@@ -25,6 +25,7 @@ export default class TypeScriptHelpers {
     switch (provider) {
       case Provider.ethers:
       case Provider.ethers_v5:
+      case Provider.ethers_v6:
         {
           if (abiInput.type.includes(SolidityType.bytes)) {
             if (abiInput.type.includes('[')) {
@@ -152,7 +153,8 @@ export default class TypeScriptHelpers {
     // any bespoke provider output type logic
     switch (provider) {
       case Provider.ethers:
-      case Provider.ethers_v5: {
+      case Provider.ethers_v5:
+      case Provider.ethers_v6: {
         if (
           abiOutput.type.includes(SolidityType.uint) ||
           abiOutput.type.includes(SolidityType.int)
@@ -160,7 +162,8 @@ export default class TypeScriptHelpers {
           if (abiOutput.type.includes(SolidityType.uint)) {
             const numberType = this.buildEtherjsNumberType(
               abiOutput.type,
-              SolidityType.uint
+              SolidityType.uint,
+              provider
             );
 
             if (abiOutput.type.includes('[')) {
@@ -176,7 +179,8 @@ export default class TypeScriptHelpers {
           if (abiOutput.type.includes(SolidityType.int)) {
             const numberType = this.buildEtherjsNumberType(
               abiOutput.type,
-              SolidityType.int
+              SolidityType.int,
+              provider
             );
 
             if (abiOutput.type.includes('[')) {
@@ -272,8 +276,12 @@ export default class TypeScriptHelpers {
    */
   private static buildEtherjsNumberType(
     type: string,
-    solidityType: SolidityType.uint | SolidityType.int
-  ): 'number' | 'BigNumber' {
+    solidityType: SolidityType.uint | SolidityType.int,
+    provider: Provider
+  ): 'number' | 'BigNumber' | 'bigint' {
+    if (provider === Provider.ethers_v6)
+      return 'bigint'
+
     const clonedType = Helpers.deepClone(type);
 
     const bits = clonedType.replace(solidityType, '').split('[')[0];
