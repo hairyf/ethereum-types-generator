@@ -1,4 +1,4 @@
-import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
+import { EthersContractContextV5 } from 'ethereum-types-generator';
 import {
   BytesLike as Arrayish,
   BigNumber,

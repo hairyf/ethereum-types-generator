@@ -228,7 +228,7 @@ describe('AbiGenerator', () => {
       EventResponse,
       EventData,
       Web3ContractContext,
-    } from 'ethereum-abi-types-generator';
+    } from 'ethereum-types-generator';
     export interface CallOptions {
       from?: string;
       gasPrice?: string;
@@ -759,7 +759,7 @@ describe('AbiGenerator', () => {
         Helpers.removeAllWhiteSpace(
           prettierFormat(`import { ContractTransaction } from 'ethers';
             import { Arrayish, BigNumber, BigNumberish, Interface } from 'ethers/utils';
-            import { EthersContractContext } from 'ethereum-abi-types-generator';
+            import { EthersContractContext } from 'ethereum-types-generator';
             export type ContractContext = EthersContractContext<
               Abi,
               AbiEventsContext,
@@ -1324,7 +1324,7 @@ describe('AbiGenerator', () => {
                     BytesLike as Arrayish,
                     BigNumber,
                     BigNumberish } from "ethers"
-            import { EthersContractContextV5 } from "ethereum-abi-types-generator";
+            import { EthersContractContextV5 } from "ethereum-types-generator";
             export type ContractContext = EthersContractContextV5<
               Abi,
               AbiMethodNames,

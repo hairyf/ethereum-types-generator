@@ -232,6 +232,12 @@ export default class AbiGenerator {
           EthersVersion.five
         );
         break;
+      case Provider.ethers_v6:
+        typings += this._ethersFactory.buildEthersInterfaces(
+          this.getAbiName(),
+          EthersVersion.six
+        );
+        break;
       default:
         throw new Error(
           `${this._context.provider} is not a known supported provider`
@@ -428,6 +434,7 @@ export default class AbiGenerator {
         );
       case Provider.ethers:
       case Provider.ethers_v5:
+      case Provider.ethers_v6:
         return TypeScriptHelpers.buildInterface(
           eventsInterfaceName,
           this._ethersFactory.buildEventInterfaceProperties(abiItems)
@@ -752,6 +759,7 @@ export default class AbiGenerator {
         return this._web3Factory.buildMethodReturnContext(type, abiItem);
       case Provider.ethers:
       case Provider.ethers_v5:
+      case Provider.ethers_v6:
         return this._ethersFactory.buildMethodReturnContext(type, abiItem);
       default:
         throw new Error(

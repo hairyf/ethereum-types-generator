@@ -5,7 +5,7 @@ import {
   BigNumber,
   BigNumberish,
 } from 'ethers';
-import { EthersContractContextV5 } from 'ethereum-abi-types-generator';
+import { EthersContractContextV5 } from 'ethereum-types-generator';
 
 export type ContractContext = EthersContractContextV5<
   Issue14Take2,

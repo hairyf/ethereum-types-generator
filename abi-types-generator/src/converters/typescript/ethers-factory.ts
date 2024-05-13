@@ -12,6 +12,7 @@ export class EthersFactory {
     abiName: string,
     ethersVersion: EthersVersion
   ): string {
+    const BigNumberish = ethersVersion === EthersVersion.six ? 'BigNumberish' : 'BigNumber'
     return `${this.getEthersImports(abiName, ethersVersion)}
 
       export declare type EventFilter = {
@@ -29,7 +30,7 @@ export class EthersFactory {
         /**
          * The price (in wei) per unit of gas
          */
-         gasPrice?: BigNumber | string | number | Promise<any>;
+         gasPrice?: ${BigNumberish} | string | number | Promise<any>;
         /**
          * The nonce to use in the transaction
          */
@@ -37,7 +38,7 @@ export class EthersFactory {
         /**
          * The amount to send with the transaction (i.e. msg.value)
          */
-         value?: BigNumber | string | number | Promise<any>;
+         value?: ${BigNumberish} | string | number | Promise<any>;
         /**
          * The chain ID (or network ID) to use
          */
@@ -71,7 +72,7 @@ export class EthersFactory {
         return `
           import { ContractTransaction } from "ethers";
           import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-          import { EthersContractContext } from "ethereum-abi-types-generator";
+          import { EthersContractContext } from "ethereum-types-generator";
 
           export type ContractContext = EthersContractContext<
             ${abiName},
@@ -86,7 +87,22 @@ export class EthersFactory {
                     BytesLike as Arrayish,
                     BigNumber,
                     BigNumberish } from "ethers";
-           import { EthersContractContextV5 } from "ethereum-abi-types-generator";
+           import { EthersContractContextV5 } from "ethereum-types-generator";
+
+           export type ContractContext = EthersContractContextV5<
+            ${abiName},
+            ${abiName}MethodNames,
+            ${abiName}EventsContext,
+            ${abiName}Events
+           >;
+        `;
+      case EthersVersion.six:
+        return `
+           import { ContractTransaction,
+                    ContractInterface,
+                    BytesLike as Arrayish,
+                    BigNumberish } from "ethers";
+           import { EthersContractContextV6 } from "ethereum-types-generator";
 
            export type ContractContext = EthersContractContextV5<
             ${abiName},

@@ -1,5 +1,5 @@
 {
-  "name": "ethereum-abi-types-generator",
+  "name": "ethereum-types-generator",
   "version": "1.3.4",
   "description": "Generate types from an ethereum ABI json file.",
   "main": "dist/index.js",
@@ -7,7 +7,6 @@
     "test": "jest",
     "watch": "tsc --watch",
     "build": "tsc",
-    "lint": "npx tslint -c tslint.json 'src/**/*.ts'",
     "publish-cli": "node ./copy-readme.js && tsc && npm publish --access public",
     "generate-playground": "node ./dist/bin/generator-cli.js './src/__PLAYGROUND__/abi.json' --output='./src/__PLAYGROUND__' --name=playground-contract --provider=ethers_v5"
   },
@@ -19,12 +18,12 @@
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+    "url": "https://github.com/hairyf/ethereum-types-generator/issues"
   },
   "bin": {
     "abi-types-generator": "./dist/bin/generator-cli.js"
   },
-  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
+  "homepage": "https://github.com/hairyf/ethereum-types-generator#readme",
   "author": "joshstevens19@hotmail.co.uk",
   "license": "MIT",
   "dependencies": {
@@ -37,7 +36,8 @@
     "reflect-metadata": "^0.1.13",
     "yargs": "^15.3.1",
     "ethers": "^4.0.47",
-    "ethersv5": "npm:ethers@^5.0.32"
+    "ethersv5": "npm:ethers@^5.0.32",
+    "ethersv6": "npm:ethers@^6"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
@@ -47,8 +47,7 @@
     "@types/yargs": "^15.0.4",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
-    "tslint": "^6.1.2",
-    "typescript": "^3.8.3"
+    "typescript": "^4"
   },
   "files": [
     "dist",

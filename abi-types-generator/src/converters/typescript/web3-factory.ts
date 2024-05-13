@@ -12,7 +12,7 @@ export class Web3Factory {
   public buildWeb3Interfaces(abiName: string): string {
     return `import BN from "bn.js";
     import BigNumber from 'bignumber.js';
-    import { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "ethereum-abi-types-generator";
+    import { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "ethereum-types-generator";
 
     export interface CallOptions {
         from?: string;

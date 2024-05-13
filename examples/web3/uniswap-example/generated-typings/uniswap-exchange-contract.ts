@@ -6,7 +6,7 @@ import {
   EventResponse,
   EventData,
   Web3ContractContext,
-} from 'ethereum-abi-types-generator';
+} from 'ethereum-types-generator';
 
 export interface CallOptions {
   from?: string;
