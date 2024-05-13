@@ -104,7 +104,7 @@ export class EthersFactory {
                     BigNumberish } from "ethers";
            import { EthersContractContextV6 } from "ethereum-types-generator";
 
-           export type ContractContext = EthersContractContextV5<
+           export type ContractContext = EthersContractContextV6<
             ${abiName},
             ${abiName}MethodNames,
             ${abiName}EventsContext,
