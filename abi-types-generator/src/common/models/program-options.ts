@@ -1,5 +1,5 @@
 export interface ProgramOptions {
-  command: string;
-  subcommands: string[];
+  command: any;
+  subcommands: any[];
   options: { [key: string]: string };
 }
