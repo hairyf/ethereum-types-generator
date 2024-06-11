@@ -98,7 +98,7 @@ export class EthersFactory {
         `;
       case EthersVersion.six:
         return `
-           import { ContractTransaction,
+           import { TransactionResponse as ContractTransaction,
                     ContractInterface,
                     BytesLike as Arrayish,
                     BigNumberish } from "ethers";
